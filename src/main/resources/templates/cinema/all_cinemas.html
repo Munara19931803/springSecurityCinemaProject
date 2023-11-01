@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>all_cinemas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #2c3e50;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .next {
+            background-color: white;
+            color: black;
+            margin-left: 1450px;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+
+        table td {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/cinema/main_page}" class="previous round">&#8249;</a>
+<a th:href="@{/cinema/main_page}" class="next round">&#8250;</a>
+
+<div class="row" style="margin-top: 30px; margin-left: 200px; margin-right: 100px">
+    <div class="col-md-4" style="width: 400px;" th:each="cinema:${all_cinemas}">
+        <div class="thumbnail" style="border-radius: 100px; border: 3px snow;box-shadow: 0 0 7px #666">
+            <form>
+                <a class="btn btn-primary btn-sm" th:href="@{/room/find_all_cinema_id/{id}(id=${cinema.id})}"
+                   role="button"><strong>ROOMS</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/cinema/update/{id}(id=${cinema.id})}"
+                   role="button"><strong>UPDATE</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/cinema/delete/{id}(id=${cinema.id})}"
+                   role="button"><strong>DELETE</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/cinema/save}"
+                   role="button"><strong>ADD</strong></a>
+            </form>
+            <img th:src="@{/cinema/image/{id}(id=${cinema.id})}" width="350px" src="">
+            <div class="container" style="color: black; margin-left: 80px">
+                <h2 th:text="${cinema.name}"></h2>
+                <p th:text="${cinema.address}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

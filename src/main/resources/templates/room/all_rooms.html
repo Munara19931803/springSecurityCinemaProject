@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>all_rooms</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-image: url("https://img.freepik.com/free-photo/movie-background-collage_23-2149876003.jpg?size=626&ext=jpg&uid=R112252836&ga=GA1.2.1898376935.1691507911&semt=sph");
+            background-size: cover;
+            height: calc(100vh - 80px);
+        }
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .next {
+            background-color:white;
+            color: black;
+            margin-left: 1450px;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+        table td{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/cinema/main_page}" class="previous round">&#8249;</a>
+<a th:href="@{/cinema/main_page}" class="next round">&#8250;</a>
+
+
+<div class="row" style="margin-top: 30px; margin-left: 200px; margin-right: 100px">
+    <div class="col-md-4" style="width: 300px;" th:each="room : ${all_rooms_id}">
+        <div class="thumbnail" style="border-radius: 100px; border: 3px snow;box-shadow: 0 0 7px #666">
+            <form >
+                <a class="btn btn-primary btn-sm" th:href="@{/place/find_all_by_id_room_id/{id}(id=${room.id})}" role="button" ><strong>PLACE</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/room/update/{id}(id=${room.id})}"role="button"><strong>UPDATE</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/room/delete/{id}(id=${room.id})}"role="button"><strong>DELETE</strong></a>
+                <a class="btn btn-primary btn-sm" th:href="@{/room/save}"role="button"><strong>ADD</strong></a>
+            </form>
+            <img th:src="@{/room/image/{id}(id=${room.id})}" width="350px" src="">
+            <div class="container" style="color: black; margin-left: 80px">
+                <p th:text="${room.name}"></p>
+                <p th:text="${room.rating}"></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>all_sessions</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url("https://img.freepik.com/free-photo/movie-background-collage_23-2149876003.jpg?size=626&ext=jpg&uid=R112252836&ga=GA1.2.1898376935.1691507911&semt=sph");
+            background-size: cover;
+            height: calc(100vh - 80px);
+        }
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .next {
+            background-color:white;
+            color: black;
+            margin-left: 1450px;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/cinema/main_page}" class="previous round">&#8249;</a>
+<a th:href="@{/cinema/main_page}" class="next round">&#8250;</a>
+<table class="table"
+       style="width: 500px; height: 300px; margin-top: 100px; margin-left: 500px">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"><b>ID</b></th>
+        <th scope="col"><b>NAME</b></th>
+        <th scope="col"><b>DURATION</b></th>
+        <th scope="col"><b></b></th>
+        <th scope="col"><b></b></th>
+        <th scope="col">
+            <a th:href="@{/session/save}">
+                <button type="button" class="btn btn-outline-success">+</button>
+            </a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="save1_session:${all_sessions}">
+        <td th:text="${save1_session.id}"></td>
+        <td th:text="${save1_session.name}"></td>
+        <td th:text="${save1_session.duration}"></td>
+        <td>
+            <a th:href="@{/session/update/{id}(id=${save1_session.id})}" class="btn-dark">update</a>
+        </td>
+        <td>
+            <a th:href="@{/session/delete/{id}(id=${save1_session.id})}" class="btn-dark">delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+
+</html>

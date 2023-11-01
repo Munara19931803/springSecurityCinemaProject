@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>only_one_place</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url("https://img.freepik.com/free-photo/movie-background-collage_23-2149876003.jpg?size=626&ext=jpg&uid=R112252836&ga=GA1.2.1898376935.1691507911&semt=sph");
+            background-size: cover;
+            height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+<body>
+<button id="history-button" class="history-hide"><a th:href="@{/cinema/main_page}">back</a></button>
+<table class="table"
+       style="width: 500px; height: 300px; margin-top: 200px; margin-left: 500px">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"><b>ID</b></th>
+        <th scope="col"><b>X</b></th>
+        <th scope="col"><b>Y</b></th>
+        <th SCOPE="col"><b>price</b></th>
+        <th scope="col">
+            <a href="">
+                <button type="button" class="btn btn-outline-success">+</button>
+            </a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="place:${only_one_place}">
+        <td th:text="${only_one_place.id}"></td>
+        <td th:text="${only_one_place.x}"></td>
+        <td th:text="${only_one_place.y}"></td>
+        <td th:text="${only_one_place.price}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+
+</html>
